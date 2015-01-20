@@ -3,6 +3,8 @@
 
 This is a lightweight student question management app I'm working on.
 
+Live demo at [http://development.tiy-atm-askqueue.divshot.io](http://development.tiy-atm-askqueue.divshot.io)!
+
 ###Purpose
 
 Keeping up with the pace of information in a coding bootcamp is hard. This difficulty is compounded when you're confused about a topic and need clarification. It can be intimidating to interrupt lecture with a question and it can often feel like it's not worth asking something just for yourself. By the time you've grappled with whether or not to ask, the moment's passed and you may have even forgotten the question! 
