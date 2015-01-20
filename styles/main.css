@@ -14,7 +14,8 @@ html {
 
 body {
   background-color: #6AEAFF;
-  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif; }
+  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  position: relative; }
 
 .container {
   max-width: 68em;
@@ -44,9 +45,20 @@ header {
   border-radius: 38px 38px 0 0;
   line-height: 50px; }
   header h1 {
+    display: inline-block;
+    width: 20%;
     margin: 0px 1px 1px 30px;
     font-size: 20px;
     color: white; }
+  header a {
+    width: 70%;
+    display: inline-block;
+    text-align: right;
+    text-decoration: none;
+    color: white; }
+    header a h3 {
+      font-size: 15px;
+      margin: 0; }
 
 .questions {
   height: 300px;
@@ -118,9 +130,27 @@ footer {
   height: 50px;
   background-color: black;
   border-radius: 0 0 38px 38px;
-  line-height: 50px; }
+  line-height: 50px;
+  text-align: center; }
   footer h3 {
+    font-size: 10px;
     margin: 0px 1px 1px 40px;
     color: white; }
+
+.halp {
+  float: left;
+  display: block;
+  margin-right: 2.35765%;
+  width: 48.82117%;
+  margin-left: 25.58941%;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  border: 2px solid black;
+  border-radius: 10%;
+  background-color: white;
+  display: none; }
+  .halp:last-child {
+    margin-right: 0; }
 
 /*# sourceMappingURL=main.css.map */

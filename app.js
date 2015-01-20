@@ -69,11 +69,20 @@ myQRef.on('child_removed', function(snap){
   $(".questions").find("[data-key='" + snap.key() + "']")[0].remove();
 });
 
-document.getElementsByClassName('submit')[0].addEventListener('click', function() {
+var submitQ = function() {
   myQRef.push({
     question: document.getElementsByClassName('input')[0].value,
     votes: 0
   });
+  $('.input').val("");
+};
+
+document.getElementsByClassName('input')[0].addEventListener('keydown', function(e) {
+  if(e.keyCode == 13) { submitQ(); }
+}, false);
+
+document.getElementsByClassName('submit')[0].addEventListener('click', function() {
+  submitQ();
 });
 
 $('.questions').on('click', '.upvote', function(e) {
@@ -84,6 +93,12 @@ $('.questions').on('click', '.upvote', function(e) {
 $('.questions').on('click', '.delete', function(e) {
   var myKey = $(e.target).parents('.question')[0].getAttribute('data-key');
   myQRef.child(myKey).remove();
-  $(".questions").find("[data-key='" + myKey + "']")[0].remove();
+});
 
+$('header a').on('click', function() {
+  $('.halp').show();
+});
+
+$('.halp').on('click', function() {
+  $('.halp').hide();
 });
