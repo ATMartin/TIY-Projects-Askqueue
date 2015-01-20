@@ -28,6 +28,29 @@ var createQuestionTags = function(qData) {
   return wrapper.innerHTML;
 };
 
+var updateQuestion = function(qData) {
+  var wrapper = document.createElement('div'),
+      votes = document.createElement('div'),
+      upvote = document.createElement('div'),
+      delq = document.createElement('div'),
+      qText = document.createElement('p');
+
+  votes.className = 'votes';
+  votes.textContent = qData.val().votes.toString();
+  upvote.className = 'upvote';
+  upvote.textContent = '+';
+  delq.className = 'delete';
+  delq.textContent = 'x';
+  qText.textContent = qData.val().question;
+
+  votes.appendChild(upvote);
+  votes.appendChild(delq);
+  wrapper.appendChild(votes);
+  wrapper.appendChild(qText);
+
+  return wrapper.innerHTML;
+};
+
 var LoadQuestion = function(qData, updated) {
   var el = createQuestionTags(qData);
 
@@ -39,7 +62,11 @@ myQRef.on('child_added', function(snap){
 });
 
 myQRef.on('child_changed', function(snap){
-  console.log(snap.val());
+  $(".questions").find("[data-key='" + snap.key() + "']")[0].innerHTML = updateQuestion(snap);
+});
+
+myQRef.on('child_removed', function(snap){
+  $(".questions").find("[data-key='" + snap.key() + "']")[0].remove();
 });
 
 document.getElementsByClassName('submit')[0].addEventListener('click', function() {
@@ -52,4 +79,11 @@ document.getElementsByClassName('submit')[0].addEventListener('click', function(
 $('.questions').on('click', '.upvote', function(e) {
   var myKey = $(e.target).parents('.question')[0].getAttribute('data-key');
   myQRef.child(myKey + '/votes').transaction(function(votes) { return votes + 1; });
+});
+
+$('.questions').on('click', '.delete', function(e) {
+  var myKey = $(e.target).parents('.question')[0].getAttribute('data-key');
+  myQRef.child(myKey).remove();
+  $(".questions").find("[data-key='" + myKey + "']")[0].remove();
+
 });
